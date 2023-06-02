@@ -88,14 +88,15 @@ public class PassengerMenu {
 
         String previousCharge = fileDatabase.passengersFile.searchField(passenger, fileDatabase.checkFileFormat, 40);
 
-        try {
-            String sum = String.valueOf(Long.parseLong(charge) + Long.parseLong(previousCharge));
-        } catch (Exception e) {
+        while (checkFormat.isNumeric(charge) < 0 || charge.length() > 10) {
             System.out.println("\u001b[31mNot valid !\u001b[0m");
             System.out.println("Please enter the amount to increase your charge :");
             charge = input.next();
         }
-        while (checkFormat.isNumeric(charge) < 0 || charge.length() > 10) {
+
+        try {
+            String sum = String.valueOf(Long.parseLong(charge) + Long.parseLong(previousCharge));
+        } catch (Exception e) {
             System.out.println("\u001b[31mNot valid !\u001b[0m");
             System.out.println("Please enter the amount to increase your charge :");
             charge = input.next();
